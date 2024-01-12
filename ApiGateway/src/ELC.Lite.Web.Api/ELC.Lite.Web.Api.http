@@ -1,0 +1,6 @@
+# @ELC.Lite.Web.Api_HostAddress = http://localhost:5086
+
+# GET {{ELC.Lite.Web.Api_HostAddress}}/
+# Accept: application/json
+
+# ###
