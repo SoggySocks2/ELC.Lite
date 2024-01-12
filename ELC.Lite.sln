@@ -21,11 +21,17 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{4F9CE2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0D7E2D0B-BE06-49BA-AD49-146AA4B5689B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELC.Lite.SharedKernel", "Common\src\ELC.Lite.SharedKernel\ELC.Lite.SharedKernel.csproj", "{A9398EC7-C87B-45F9-A381-E1EC1E836A6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ELC.Lite.SharedKernel", "Common\src\ELC.Lite.SharedKernel\ELC.Lite.SharedKernel.csproj", "{A9398EC7-C87B-45F9-A381-E1EC1E836A6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELC.Lite.CoreApp.Api", "CoreApp\src\ELC.Lite.CoreApp.Api\ELC.Lite.CoreApp.Api.csproj", "{4479FE28-55DF-4F9E-97AE-6FA50A1413AF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ELC.Lite.CoreApp.Api", "CoreApp\src\ELC.Lite.CoreApp.Api\ELC.Lite.CoreApp.Api.csproj", "{4479FE28-55DF-4F9E-97AE-6FA50A1413AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELC.Lite.CoreApp.Infrastucture", "CoreApp\src\ELC.Lite.CoreApp.Infrastucture\ELC.Lite.CoreApp.Infrastucture.csproj", "{670F80BF-8A94-4588-8BDE-A159393DD6DA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ELC.Lite.CoreApp.Infrastucture", "CoreApp\src\ELC.Lite.CoreApp.Infrastucture\ELC.Lite.CoreApp.Infrastucture.csproj", "{670F80BF-8A94-4588-8BDE-A159393DD6DA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A8D28B4B-5834-44ED-A77E-86DC66D4270B}"
+	ProjectSection(SolutionItems) = preProject
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
