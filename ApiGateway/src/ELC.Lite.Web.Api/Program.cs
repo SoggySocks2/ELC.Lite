@@ -19,7 +19,8 @@ namespace ELC.Lite.Web.Api
             });
 
             builder.Services.AddControllers();
-            builder.Services.AddSwaggerGen();
+            //builder.Services.AddSwaggerGen();
+            builder.Services.AddSwaggerConfiguration();
             //builder.Services.AddAuthentication();
             builder.AddCoreAppServices();
             builder.AddWebApiServices();
@@ -28,14 +29,15 @@ namespace ELC.Lite.Web.Api
 
             //if (app.Environment.IsDevelopment())
             //{
-            app.UseSwagger();
-            app.UseSwaggerUI(options =>
-            {
-                options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
-                options.RoutePrefix = string.Empty;
-            });
-            app.UseDeveloperExceptionPage();
+            //    app.UseSwagger();
+            //    app.UseSwaggerUI(options =>
+            //    {
+            //        options.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
+            //        options.RoutePrefix = string.Empty;
+            //    });
+            //    app.UseDeveloperExceptionPage();
             //}
+            app.UseCustomSwagger();
 
             app.UseHttpsRedirection();
             app.UseRouting();
