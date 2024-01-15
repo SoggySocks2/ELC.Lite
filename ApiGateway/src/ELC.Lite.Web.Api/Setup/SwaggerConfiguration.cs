@@ -31,8 +31,8 @@ namespace ELC.Lite.Web.Api.Setup
             app.UseSwaggerUI(c =>
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "ELC.Lite.Web.API");
-                //c.RoutePrefix = "api/documentation";
-                c.RoutePrefix = string.Empty;
+                c.RoutePrefix = "api/documentation";
+                //c.RoutePrefix = string.Empty;
 
                 //if (GatewayCustomerSettings.Instance.Auth == IdentityType.B2C)
                 //{
