@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ELC.Lite.Core.Identity.Migrations
+namespace ELC.Lite.Core.Identity.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class AddIdentity : Migration

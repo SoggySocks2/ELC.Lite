@@ -1,4 +1,4 @@
-﻿using ELC.Lite.Core.Identity;
+﻿using ELC.Lite.Core.Identity.Infrastructure;
 using ELC.Lite.CoreApp.Api.Leads;
 using ELC.Lite.CoreApp.Infrastucture;
 using ELC.Lite.CoreApp.Infrastucture.Leads;
