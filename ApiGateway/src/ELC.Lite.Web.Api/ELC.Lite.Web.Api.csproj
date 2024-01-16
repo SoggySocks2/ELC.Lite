@@ -45,7 +45,8 @@
     <ProjectReference Include="..\..\..\Common\src\ELC.Lite.SharedKernel\ELC.Lite.SharedKernel.csproj" />
     <ProjectReference Include="..\..\..\CoreApp\src\ELC.Lite.CoreApp.Api\ELC.Lite.CoreApp.Api.csproj" />
     <ProjectReference Include="..\..\..\CoreApp\src\ELC.Lite.CoreApp.Infrastucture\ELC.Lite.CoreApp.Infrastucture.csproj" />
-    <ProjectReference Include="..\..\..\ELC.Lite.Core.Identity.Infrastructure\ELC.Lite.Core.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\..\Identity\ELC.Lite.Identity.Api\ELC.Lite.Identity.Api.csproj" />
+    <ProjectReference Include="..\..\..\Identity\ELC.Lite.Identity.Infrastructure\ELC.Lite.Identity.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

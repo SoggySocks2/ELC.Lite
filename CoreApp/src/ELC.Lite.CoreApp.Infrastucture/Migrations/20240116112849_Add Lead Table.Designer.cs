@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ELC.Lite.CoreApp.Infrastucture.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
-    [Migration("20240116104820_Add Lead Table")]
+    [Migration("20240116112849_Add Lead Table")]
     partial class AddLeadTable
     {
         /// <inheritdoc />

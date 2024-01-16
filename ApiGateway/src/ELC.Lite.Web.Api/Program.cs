@@ -25,8 +25,11 @@ namespace ELC.Lite.Web.Api
 
             builder.Services.AddControllers();
             builder.Services.AddSwaggerConfiguration();
+
             //builder.Services.AddAuthentication();
-            builder.AddCoreAppServices(IdentitySettings.Instance, CoreAppSettings.Instance);
+
+            builder.AddIdentityServices(IdentitySettings.Instance);
+            builder.AddCoreAppServices(CoreAppSettings.Instance);
             builder.AddWebApiServices();
 
             var app = builder.Build();
