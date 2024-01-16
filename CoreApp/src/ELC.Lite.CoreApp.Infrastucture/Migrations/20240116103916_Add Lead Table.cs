@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace ELC.Lite.CoreApp.Infrastucture.Migrations.CoreDb
+namespace ELC.Lite.CoreApp.Infrastucture.Migrations
 {
     /// <inheritdoc />
     public partial class AddLeadTable : Migration

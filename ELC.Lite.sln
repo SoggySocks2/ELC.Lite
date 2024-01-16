@@ -33,6 +33,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ELC.Lite.Core.Identity", "ELC.Lite.Core.Identity\ELC.Lite.Core.Identity.csproj", "{30FA5511-40CF-4403-9899-FDB78AE053F7}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -63,6 +65,10 @@ Global
 		{670F80BF-8A94-4588-8BDE-A159393DD6DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{670F80BF-8A94-4588-8BDE-A159393DD6DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{670F80BF-8A94-4588-8BDE-A159393DD6DA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{30FA5511-40CF-4403-9899-FDB78AE053F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{30FA5511-40CF-4403-9899-FDB78AE053F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{30FA5511-40CF-4403-9899-FDB78AE053F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{30FA5511-40CF-4403-9899-FDB78AE053F7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -77,6 +83,7 @@ Global
 		{A9398EC7-C87B-45F9-A381-E1EC1E836A6C} = {0D7E2D0B-BE06-49BA-AD49-146AA4B5689B}
 		{4479FE28-55DF-4F9E-97AE-6FA50A1413AF} = {42A500BD-9656-422C-AA63-E198E315BE97}
 		{670F80BF-8A94-4588-8BDE-A159393DD6DA} = {42A500BD-9656-422C-AA63-E198E315BE97}
+		{30FA5511-40CF-4403-9899-FDB78AE053F7} = {42A500BD-9656-422C-AA63-E198E315BE97}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7EFA8B5A-4EE9-41B7-BE92-96F6B465A2A5}

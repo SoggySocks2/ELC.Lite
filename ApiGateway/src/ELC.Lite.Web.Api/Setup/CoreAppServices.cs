@@ -1,4 +1,5 @@
-﻿using ELC.Lite.CoreApp.Api.Leads;
+﻿using ELC.Lite.Core.Identity;
+using ELC.Lite.CoreApp.Api.Leads;
 using ELC.Lite.CoreApp.Infrastucture;
 using ELC.Lite.CoreApp.Infrastucture.Leads;
 using ELC.Lite.Domain.Leads.Contracts;

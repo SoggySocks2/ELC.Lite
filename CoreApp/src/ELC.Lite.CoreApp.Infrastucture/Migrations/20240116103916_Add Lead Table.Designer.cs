@@ -9,10 +9,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace ELC.Lite.CoreApp.Infrastucture.Migrations.CoreDb
+namespace ELC.Lite.CoreApp.Infrastucture.Migrations
 {
     [DbContext(typeof(CoreDbContext))]
-    [Migration("20240116102528_Add Lead Table")]
+    [Migration("20240116103916_Add Lead Table")]
     partial class AddLeadTable
     {
         /// <inheritdoc />

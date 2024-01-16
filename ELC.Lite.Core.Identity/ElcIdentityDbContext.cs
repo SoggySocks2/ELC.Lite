@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
-namespace ELC.Lite.CoreApp.Infrastucture
+namespace ELC.Lite.Core.Identity
 {
     public class ElcIdentityDbContext : IdentityDbContext
     {
