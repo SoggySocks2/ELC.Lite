@@ -1,10 +1,9 @@
 ﻿using ELC.Lite.Domain.Leads;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ELC.Lite.CoreApp.Infrastucture
 {
-    public class CoreDbContext : IdentityDbContext
+    public class CoreDbContext : DbContext
     {
         #region LeadAggregate
 
@@ -20,6 +19,8 @@ namespace ELC.Lite.CoreApp.Infrastucture
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ApplyConfigurationForSqliteTesting(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         private void ApplyConfigurationForSqliteTesting(ModelBuilder modelBuilder)

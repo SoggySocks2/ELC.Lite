@@ -19,13 +19,14 @@ namespace ELC.Lite.Web.Api
                 });
             });
 
+            builder.Configuration.Bind(IdentitySettings.CONFIG_NAME, IdentitySettings.Instance);
             builder.Configuration.Bind(CoreAppSettings.CONFIG_NAME, CoreAppSettings.Instance);
 
 
             builder.Services.AddControllers();
             builder.Services.AddSwaggerConfiguration();
             //builder.Services.AddAuthentication();
-            builder.AddCoreAppServices(CoreAppSettings.Instance);
+            builder.AddCoreAppServices(IdentitySettings.Instance, CoreAppSettings.Instance);
             builder.AddWebApiServices();
 
             var app = builder.Build();

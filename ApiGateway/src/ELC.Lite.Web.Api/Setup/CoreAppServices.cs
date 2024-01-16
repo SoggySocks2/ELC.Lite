@@ -11,19 +11,40 @@ namespace ELC.Lite.Web.Api.Setup
 {
     public static class CoreAppServices
     {
-        public static void AddCoreAppServices(this WebApplicationBuilder builder, CoreAppSettings coreAppSettings)
+        public static void AddCoreAppServices(this WebApplicationBuilder builder, IdentitySettings identitySettings, CoreAppSettings coreAppSettings)
         {
             //builder.Services.AddCustomAutoMapper(typeof(CoreAppApiMarker).Assembly, typeof(CoreAppInfrastructureMarker).Assembly);
             builder.Services.AddAutoMapperConfiguration();
 
-            builder.AddIdentityDbContext(coreAppSettings);
+            builder.AddIdentityDbContext(identitySettings);
             builder.AddIdentity();
+            builder.AddCoreDbContext(coreAppSettings);
+            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
             builder.Services.AddLeadServices();
         }
 
-        private static void AddIdentityDbContext(this WebApplicationBuilder builder, CoreAppSettings coreAppSettings)
+        private static void AddIdentityDbContext(this WebApplicationBuilder builder, IdentitySettings identitySettings)
         {
-            var connectionString = coreAppSettings.IdentityDbConnectionString ?? throw new InvalidOperationException("Connection string 'IdentityDbConnectionString' not found.");
+            var connectionString = identitySettings.DbConnectionString ?? throw new InvalidOperationException("Connection string 'Identity - DbConnectionString' not found.");
+            builder.Services.AddDbContext<ElcIdentityDbContext>(options =>
+                options.UseSqlServer(connectionString, sqlServerOptions =>
+                {
+                    if (identitySettings.DbTimeout is not null)
+                    {
+                        sqlServerOptions.CommandTimeout(identitySettings.DbTimeout.Value);
+                    }
+                })
+            );
+        }
+        private static void AddIdentity(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
+                .AddEntityFrameworkStores<ElcIdentityDbContext>();
+            builder.Services.AddControllersWithViews();
+        }
+        private static void AddCoreDbContext(this WebApplicationBuilder builder, CoreAppSettings coreAppSettings)
+        {
+            var connectionString = coreAppSettings.DbConnectionString ?? throw new InvalidOperationException("Connection string 'Core - DbConnectionString' not found.");
             builder.Services.AddDbContext<CoreDbContext>(options =>
                 options.UseSqlServer(connectionString, sqlServerOptions =>
                 {
@@ -33,13 +54,6 @@ namespace ELC.Lite.Web.Api.Setup
                     }
                 })
             );
-            builder.Services.AddDatabaseDeveloperPageExceptionFilter();
-        }
-        private static void AddIdentity(this WebApplicationBuilder builder)
-        {
-            builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<CoreDbContext>();
-            builder.Services.AddControllersWithViews();
         }
 
         private static void AddLeadServices(this IServiceCollection services)

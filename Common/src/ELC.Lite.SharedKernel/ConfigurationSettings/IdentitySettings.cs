@@ -1,11 +1,11 @@
 ﻿namespace ELC.Lite.SharedKernel.ConfigurationSettings
 {
-    public class CoreAppSettings
+    public class IdentitySettings
     {
-        public const string CONFIG_NAME = "CoreAppModule";
+        public const string CONFIG_NAME = "IdentityModule";
 
-        public static CoreAppSettings Instance { get; } = new CoreAppSettings();
-        private CoreAppSettings() { }
+        public static IdentitySettings Instance { get; } = new IdentitySettings();
+        private IdentitySettings() { }
 
         public bool DisableAzureKeyVault { get; set; }
         public string AzureKeyVaultUrl { get; set; } = string.Empty;
