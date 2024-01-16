@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\src\ELC.Lite.SharedKernel\ELC.Lite.SharedKernel.csproj" />
+    <ProjectReference Include="..\ELC.Lite.Identity.Infrastructure\ELC.Lite.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\ELC.Lite.Identity.Models\ELC.Lite.Identity.Models.csproj" />
+  </ItemGroup>
+
+</Project>

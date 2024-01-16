@@ -19,12 +19,15 @@ namespace ELC.Lite.CoreApp.Infrastucture
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             ApplyConfigurationForSqliteTesting(modelBuilder);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         private void ApplyConfigurationForSqliteTesting(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<Lead>().HasKey(x => x.Id);
             modelBuilder.Entity<Lead>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Lead>().Property(x => x.Budget).HasColumnType("decimal(18,4)");
 
             modelBuilder.Entity<Lead>().OwnsOne(x => x.Customer, a =>
             {
