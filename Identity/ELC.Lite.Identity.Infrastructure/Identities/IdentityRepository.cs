@@ -1,23 +1,23 @@
 ﻿using ELC.Lite.Identity.Models.Identity;
 using Microsoft.AspNetCore.Identity;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace ELC.Lite.Identity.Infrastructure.Identities
 {
     public class IdentityRepository : IIdentityRepository
     {
-        //private readonly SignInManager<ElcUser> _signInManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly IUserStore<IdentityUser> _userStore;
         private readonly IUserEmailStore<IdentityUser> _emailStore;
-        //private readonly ElcIdentityDbContext _dbContext;
 
         public IdentityRepository(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, IUserStore<IdentityUser> userStore)
         {
-            //_signInManager = signInManager;
+            _signInManager = signInManager;
             _userManager = userManager;
             _userStore = userStore;
             _emailStore = GetEmailStore();
-            //_dbContext = dbContext;
         }
 
         public async Task<UserModel> AddAsync(RegisterUserModel registerUserModel, CancellationToken cancellationToken)
@@ -38,6 +38,40 @@ namespace ELC.Lite.Identity.Infrastructure.Identities
             }
 
             return userModel;
+        }
+
+        public async Task<UserAuthenicatedModel> LoginAsync(UserLoginModel userLoginModel, CancellationToken cancellationToken)
+        {
+            var userAuthenicatedModel = new UserAuthenicatedModel();
+            var result = await _signInManager.PasswordSignInAsync(userLoginModel.Email, userLoginModel.Password, userLoginModel.RememberMe, lockoutOnFailure: false);
+
+            if (result.Succeeded)
+            {
+                var user = await _userManager.FindByEmailAsync(userLoginModel.Email);
+
+                if (user != null && await _userManager.CheckPasswordAsync(user, userLoginModel.Password))
+                {
+                    var userRoles = await _userManager.GetRolesAsync(user);
+
+                    var authClaims = new List<Claim>
+                    {
+                        new Claim(ClaimTypes.Name, user.UserName ?? string.Empty),
+                        new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+                    };
+
+                    foreach (var userRole in userRoles)
+                    {
+                        authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+                    }
+
+                    var token = await _userManager.GenerateUserTokenAsync(user, "Default", "Login");
+
+                    userAuthenicatedModel.Email = user.Email ?? string.Empty;
+                    userAuthenicatedModel.Token = token;
+                }
+            }
+
+            return userAuthenicatedModel;
         }
 
         private IdentityUser CreateUser()

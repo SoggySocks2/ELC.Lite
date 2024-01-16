@@ -21,5 +21,14 @@ namespace ELC.Lite.Identity.Api.Identities
 
             return userModel;
         }
+
+        public async Task<UserAuthenicatedModel> LoginAsync(UserLoginModel userLoginModel, CancellationToken cancellationToken)
+        {
+            Check.For.Null(userLoginModel);
+
+            var userAuthenicatedModel = await _identityRepository.LoginAsync(userLoginModel, cancellationToken);
+
+            return userAuthenicatedModel;
+        }
     }
 }

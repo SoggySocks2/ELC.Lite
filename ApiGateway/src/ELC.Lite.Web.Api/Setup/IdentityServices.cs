@@ -41,6 +41,7 @@ namespace ELC.Lite.Web.Api.Setup
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
             })
+            .AddRoles<IdentityRole>()
             .AddEntityFrameworkStores<ElcIdentityDbContext>();
             builder.Services.AddControllersWithViews();
         }

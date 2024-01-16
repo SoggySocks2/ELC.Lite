@@ -1,6 +1,6 @@
 ﻿namespace ELC.Lite.Models.Leads
 {
-    public class LeadUpdateModel
+    public record LeadUpdateModel
     {
         public int Id { get; set; } = default!;
         public decimal? Budget { get; set; } = null!;
