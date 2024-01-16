@@ -1,3 +1,4 @@
+using ELC.Lite.SharedKernel.ConfigurationSettings;
 using ELC.Lite.Web.Api.Setup;
 
 namespace ELC.Lite.Web.Api
@@ -18,11 +19,13 @@ namespace ELC.Lite.Web.Api
                 });
             });
 
+            builder.Configuration.Bind(CoreAppSettings.CONFIG_NAME, CoreAppSettings.Instance);
+
+
             builder.Services.AddControllers();
-            //builder.Services.AddSwaggerGen();
             builder.Services.AddSwaggerConfiguration();
             //builder.Services.AddAuthentication();
-            builder.AddCoreAppServices();
+            builder.AddCoreAppServices(CoreAppSettings.Instance);
             builder.AddWebApiServices();
 
             var app = builder.Build();
@@ -43,8 +46,8 @@ namespace ELC.Lite.Web.Api
             app.UseRouting();
 
             app.UseCors("AllowAll");
-            //app.UseAuthorization();
-            //app.UseAuthentication();
+            app.UseAuthorization();
+            app.UseAuthentication();
 
 
 

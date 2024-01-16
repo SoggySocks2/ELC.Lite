@@ -1,9 +1,10 @@
 ﻿using ELC.Lite.Domain.Leads;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 
 namespace ELC.Lite.CoreApp.Infrastucture
 {
-    public class CoreDbContext : DbContext
+    public class CoreDbContext : IdentityDbContext
     {
         #region LeadAggregate
 
@@ -25,6 +26,7 @@ namespace ELC.Lite.CoreApp.Infrastucture
         {
             modelBuilder.Entity<Lead>().HasKey(x => x.Id);
             modelBuilder.Entity<Lead>().Property(x => x.Id).ValueGeneratedOnAdd();
+            modelBuilder.Entity<Lead>().Property(x => x.Budget).HasColumnType("decimal(18,4)");
 
             modelBuilder.Entity<Lead>().OwnsOne(x => x.Customer, a =>
             {
