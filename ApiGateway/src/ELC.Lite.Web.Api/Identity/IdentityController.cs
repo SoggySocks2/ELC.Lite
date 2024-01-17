@@ -19,5 +19,18 @@ namespace ELC.Lite.Web.Api.Identity
         {
             return await _identityProxy.AddAsync(registerUserModel, cancellationToken);
         }
+
+        [HttpPut]
+        public async Task<bool> AddPasswordAsync(AddPasswordModel addPasswordModel, CancellationToken cancellationToken)
+        {
+            return await _identityProxy.AddPasswordAsync(addPasswordModel, cancellationToken);
+        }
+
+        [HttpPut]
+        [Route("reset-password")]
+        public async Task<bool> ResetPasswordAsync(ResetPasswordModel resetPasswordModel, CancellationToken cancellationToken)
+        {
+            return await _identityProxy.ResetPasswordAsync(resetPasswordModel, cancellationToken);
+        }
     }
 }

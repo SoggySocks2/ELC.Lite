@@ -30,5 +30,23 @@ namespace ELC.Lite.Identity.Api.Identities
 
             return userAuthenicatedModel;
         }
+
+        public async Task<bool> AddPasswordAsync(AddPasswordModel addPasswordModel, CancellationToken cancellationToken)
+        {
+            Check.For.Null(addPasswordModel);
+
+            var result = await _identityRepository.AddPasswordAsync(addPasswordModel, cancellationToken);
+
+            return result;
+        }
+
+        public async Task<bool> ResetPasswordAsync(ResetPasswordModel resetPasswordModel, CancellationToken cancellationToken)
+        {
+            Check.For.Null(resetPasswordModel);
+
+            var result = await _identityRepository.ResetPasswordAsync(resetPasswordModel, cancellationToken);
+
+            return result;
+        }
     }
 }

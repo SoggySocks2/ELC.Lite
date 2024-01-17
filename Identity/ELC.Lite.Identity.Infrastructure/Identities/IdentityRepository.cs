@@ -74,6 +74,42 @@ namespace ELC.Lite.Identity.Infrastructure.Identities
             return userAuthenicatedModel;
         }
 
+        public async Task<bool> AddPasswordAsync(AddPasswordModel addPasswordModel, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByEmailAsync(addPasswordModel.Email);
+            if (user == null)
+            {
+                return false;
+            }
+
+            var addPasswordResult = await _userManager.AddPasswordAsync(user, addPasswordModel.NewPassword);
+            if (!addPasswordResult.Succeeded)
+            {
+                return false;
+            }
+
+            await _signInManager.RefreshSignInAsync(user);
+            return true;
+        }
+
+        public async Task<bool> ResetPasswordAsync(ResetPasswordModel resetPasswordModel, CancellationToken cancellationToken)
+        {
+            var user = await _userManager.FindByEmailAsync(resetPasswordModel.Email);
+            if (user == null || !(await _userManager.IsEmailConfirmedAsync(user)))
+            {
+                return false;
+            }
+
+            var code = await _userManager.GeneratePasswordResetTokenAsync(user);
+
+            //code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
+            //code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
+
+            var result = await _userManager.ResetPasswordAsync(user, code, resetPasswordModel.NewPassword);
+
+            return result.Succeeded;
+        }
+
         private IdentityUser CreateUser()
         {
             try
