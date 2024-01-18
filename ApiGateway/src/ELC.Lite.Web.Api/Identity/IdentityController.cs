@@ -5,7 +5,7 @@ namespace ELC.Lite.Web.Api.Identity
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IdentityController : ControllerBase
+    public class IdentityController : BaseController
     {
         private readonly IIdentityProxy _identityProxy;
 
@@ -15,22 +15,31 @@ namespace ELC.Lite.Web.Api.Identity
         }
 
         [HttpPost]
-        public async Task<UserModel> AddAsync(RegisterUserModel registerUserModel, CancellationToken cancellationToken)
+        public async Task<ActionResult<UserModel>> AddAsync(RegisterUserModel registerUserModel, CancellationToken cancellationToken)
         {
-            return await _identityProxy.AddAsync(registerUserModel, cancellationToken);
+            if (!HasClaim("Email", "peter.jones@home.com") && !IsInRole("Admin")) { return Unauthorized(); }
+
+            var userModel = await _identityProxy.AddAsync(registerUserModel, cancellationToken);
+            return Ok(userModel);
         }
 
         [HttpPut]
-        public async Task<bool> AddPasswordAsync(AddPasswordModel addPasswordModel, CancellationToken cancellationToken)
+        public async Task<ActionResult<bool>> AddPasswordAsync(AddPasswordModel addPasswordModel, CancellationToken cancellationToken)
         {
-            return await _identityProxy.AddPasswordAsync(addPasswordModel, cancellationToken);
+            if (!HasClaim("Email", "peter.jones@home.com") && !IsInRole("Admin")) { return Unauthorized(); }
+
+            var result = await _identityProxy.AddPasswordAsync(addPasswordModel, cancellationToken);
+            return Ok(result);
         }
 
         [HttpPut]
         [Route("reset-password")]
-        public async Task<bool> ResetPasswordAsync(ResetPasswordModel resetPasswordModel, CancellationToken cancellationToken)
+        public async Task<ActionResult<bool>> ResetPasswordAsync(ResetPasswordModel resetPasswordModel, CancellationToken cancellationToken)
         {
-            return await _identityProxy.ResetPasswordAsync(resetPasswordModel, cancellationToken);
+            if (!HasClaim("Email", "peter.jones@home.com") && !IsInRole("Admin")) { return Unauthorized(); }
+
+            var result = await _identityProxy.ResetPasswordAsync(resetPasswordModel, cancellationToken);
+            return Ok(result);
         }
     }
 }

@@ -5,7 +5,7 @@ namespace ELC.Lite.Web.Api.Identity
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseController
     {
         private readonly IIdentityProxy _identityProxy;
 

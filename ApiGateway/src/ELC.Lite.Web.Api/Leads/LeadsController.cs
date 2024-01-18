@@ -5,7 +5,7 @@ namespace ELC.Lite.Web.Api.Leads
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class LeadsController : ControllerBase
+    public class LeadsController : BaseController
     {
         private readonly ILeadProxy _leadsProxy;
 
@@ -59,15 +59,6 @@ namespace ELC.Lite.Web.Api.Leads
 
             var leadModel = await _leadsProxy.UpdateAsync(leadUpdateModel, cancellationToken);
             return Ok(leadModel);
-        }
-
-        private bool HasClaim(string claimType, string value)
-        {
-            return User.Claims.FirstOrDefault(x => x.Type == claimType && x.Value.Equals(value, StringComparison.InvariantCultureIgnoreCase)) != null;
-        }
-        private bool IsInRole(string requiredClaim)
-        {
-            return User.IsInRole(requiredClaim);
         }
     }
 }
