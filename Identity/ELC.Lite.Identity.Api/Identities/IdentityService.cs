@@ -48,5 +48,10 @@ namespace ELC.Lite.Identity.Api.Identities
 
             return result;
         }
+
+        public async Task LogoutAsync(CancellationToken cancellationToken)
+        {
+            await _identityRepository.LogoutAsync(cancellationToken);
+        }
     }
 }

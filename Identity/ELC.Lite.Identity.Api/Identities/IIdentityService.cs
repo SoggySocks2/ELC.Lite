@@ -8,5 +8,6 @@ namespace ELC.Lite.Identity.Api.Identities
         Task<UserAuthenicatedModel> LoginAsync(UserLoginModel userLoginModel, CancellationToken cancellationToken);
         Task<bool> AddPasswordAsync(AddPasswordModel addPasswordModel, CancellationToken cancellationToken);
         Task<bool> ResetPasswordAsync(ResetPasswordModel resetPasswordModel, CancellationToken cancellationToken);
+        Task LogoutAsync(CancellationToken cancellationToken);
     }
 }

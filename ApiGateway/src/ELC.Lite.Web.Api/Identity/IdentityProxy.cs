@@ -23,5 +23,8 @@ namespace ELC.Lite.Web.Api.Identity
 
         public Task<bool> ResetPasswordAsync(ResetPasswordModel resetPasswordModel, CancellationToken cancellationToken)
             => _identityService.ResetPasswordAsync(resetPasswordModel, cancellationToken);
+
+        public Task LogoutAsync(CancellationToken cancellationToken)
+            => _identityService.LogoutAsync(cancellationToken);
     }
 }

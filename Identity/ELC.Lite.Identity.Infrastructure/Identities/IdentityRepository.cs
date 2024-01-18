@@ -132,5 +132,10 @@ namespace ELC.Lite.Identity.Infrastructure.Identities
             }
             return (IUserEmailStore<IdentityUser>)_userStore;
         }
+
+        public async Task LogoutAsync(CancellationToken cancellationToken)
+        {
+            await _signInManager.SignOutAsync();
+        }
     }
 }

@@ -19,5 +19,11 @@ namespace ELC.Lite.Web.Api.Identity
         {
             return await _identityProxy.LoginAsync(loginModel, cancellationToken);
         }
+
+        [HttpPost("logout")]
+        public async Task LogoutAsync(CancellationToken cancellationToken)
+        {
+            await _identityProxy.LogoutAsync(cancellationToken);
+        }
     }
 }
