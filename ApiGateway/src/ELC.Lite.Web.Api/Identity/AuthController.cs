@@ -5,7 +5,7 @@ namespace ELC.Lite.Web.Api.Identity
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class AuthController : ControllerBase
+    public class AuthController : BaseController
     {
         private readonly IIdentityProxy _identityProxy;
 
@@ -18,6 +18,12 @@ namespace ELC.Lite.Web.Api.Identity
         public async Task<UserAuthenicatedModel> LoginAsync(UserLoginModel loginModel, CancellationToken cancellationToken)
         {
             return await _identityProxy.LoginAsync(loginModel, cancellationToken);
+        }
+
+        [HttpPost("logout")]
+        public async Task LogoutAsync(CancellationToken cancellationToken)
+        {
+            await _identityProxy.LogoutAsync(cancellationToken);
         }
     }
 }
