@@ -15,9 +15,12 @@ namespace ELC.Lite.Web.Api.Identity
         }
 
         [HttpPost]
-        public async Task<UserAuthenicatedModel> LoginAsync(UserLoginModel loginModel, CancellationToken cancellationToken)
+        public async Task<ActionResult<UserAuthenicatedModel>> LoginAsync(UserLoginModel loginModel, CancellationToken cancellationToken)
         {
-            return await _identityProxy.LoginAsync(loginModel, cancellationToken);
+            var userAuthenicatedModel = await _identityProxy.LoginAsync(loginModel, cancellationToken);
+            if (string.IsNullOrEmpty(userAuthenicatedModel.Token)) { return Unauthorized(); }
+
+            return Ok(userAuthenicatedModel);
         }
 
         [HttpPost("logout")]
