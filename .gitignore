@@ -396,3 +396,4 @@ FodyWeavers.xsd
 
 # JetBrains Rider
 *.sln.iml
+/ApiGateway/src/ELC.Lite.Web.Api/appsettings.Development.json
